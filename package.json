@@ -6,11 +6,17 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "devstart": "nodemon ./back/server.js",
+    "serve": "concurrently \"npm run dev\" \"npm run devstart\""
   },
   "dependencies": {
+    "concurrently": "^8.0.1",
+    "express": "^4.18.2",
     "materialize-css": "^1.0.0",
+    "mongodb": "^5.5.0",
     "next": "13.3.0",
+    "nodemon": "^2.0.22",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-hook-form": "^7.43.9"
