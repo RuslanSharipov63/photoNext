@@ -11,6 +11,7 @@
     "serve": "concurrently \"npm run dev\" \"npm run devstart\""
   },
   "dependencies": {
+    "bcrypt": "^5.1.0",
     "concurrently": "^8.0.1",
     "express": "^4.18.2",
     "express-validator": "^7.0.1",
