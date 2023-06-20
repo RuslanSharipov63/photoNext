@@ -1,8 +1,10 @@
 const express = require("express");
 const registerValidation = require("./validations/auth");
+const loginValidation = require("./validations/login");
 const mongoose = require("mongoose");
 const checkAuth = require("./utils/checkAuth");
 const { register, login, getMe } = require('./controllers/UserController')
+const PhotoController = require('./controllers/PhotoController')
 
 const PORT = 4000;
 const URL = "mongodb://localhost:27017/photobox";
@@ -21,7 +23,7 @@ app.listen(PORT, (err) => {
     err ? console.log(err) : console.log(`Listening port ${PORT}`);
 });
 /* авторизация */
-app.post("/auth/login", login);
+app.post("/auth/login", loginValidation, login);
 
 /* регистрация */
 app.post("/auth/register", registerValidation, register);
@@ -30,3 +32,9 @@ app.post("/auth/register", registerValidation, register);
 /* может ли пользователь получить информацию о себе */
 
 app.get("auth/me", checkAuth, getMe);
+
+/* получение всех фото */
+// app.get('/photos/', PhotoController.getAll)
+//получаем одну статью
+// app.get('/photos/:id', PhotoController.getOne)
+// app.post('/photo', PhotoController.create)
