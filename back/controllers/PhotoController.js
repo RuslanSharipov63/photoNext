@@ -1,5 +1,9 @@
 const PhotoModel = require('./../models/Photo')
 
+const getAll = async (req, res) => {
+    
+}
+
 const create = async (req, res) => {
     try {
         const doc = new PhotoModel({

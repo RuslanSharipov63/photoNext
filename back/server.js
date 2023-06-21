@@ -1,10 +1,11 @@
 const express = require("express");
 const registerValidation = require("./validations/auth");
 const loginValidation = require("./validations/login");
+const photoValidation = require("./validations/photo");
 const mongoose = require("mongoose");
 const checkAuth = require("./utils/checkAuth");
 const { register, login, getMe } = require('./controllers/UserController')
-const PhotoController = require('./controllers/PhotoController')
+const { create } = require('./controllers/PhotoController')
 
 const PORT = 4000;
 const URL = "mongodb://localhost:27017/photobox";
@@ -35,6 +36,7 @@ app.get("auth/me", checkAuth, getMe);
 
 /* получение всех фото */
 // app.get('/photos/', PhotoController.getAll)
-//получаем одну статью
+//получаем одно фото
 // app.get('/photos/:id', PhotoController.getOne)
-// app.post('/photo', PhotoController.create)
+//создаем одно фото
+app.post('/photo', checkAuth, photoValidation, create)
