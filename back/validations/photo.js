@@ -4,4 +4,4 @@ const photoCreateValidation = [
     body('tags', 'Неверный формат тегов').isString(),
     body('size', 'Не распознан размер фото').isNumeric(),
 ]
-module.exports = photoValidation;
+module.exports = photoCreateValidation;
