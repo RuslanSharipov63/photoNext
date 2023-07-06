@@ -56,7 +56,7 @@ const create = async (req, res) => {
 const remove = async (req, res) => {
   const photoId = await req.params.id;
   try {
-   await PhotoModel.findByIdAndDelete({ _id: photoId });
+    await PhotoModel.findByIdAndDelete({ _id: photoId });
     return res.json({
       success: true,
     });
@@ -67,4 +67,24 @@ const remove = async (req, res) => {
     });
   }
 };
-module.exports = { create, getAll, getOne, remove };
+
+const updateTags = async (req, res) => {
+  try {
+    const photoId = await req.params.id;
+    await PhotoModel.updateOne({
+      _id: photoId,
+    }, {
+      tags: req.body.tags
+    })
+    return res.json({
+      success: true
+    })
+  } catch (err) {
+    console.log(err);
+    return res.status(500).json({
+      message: "Не удалось обновить статью",
+    });
+  }
+}
+
+module.exports = { create, getAll, getOne, remove, updateTags };
